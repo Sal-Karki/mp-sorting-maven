@@ -7,6 +7,8 @@ import java.util.Comparator;
  *
  * @param <T>
  *   The types of values that are sorted.
+ * @author Samuel A. Rebelsky
+ * @author Sal Karki
  *
  * @author Samuel A. Rebelsky
  */
@@ -55,6 +57,17 @@ public class InsertionSorter<T> implements Sorter<T> {
    */
   @Override
   public void sort(T[] values) {
-    // STUB
+    // iterate starting from index 1
+    for (int i = 1; i < values.length; i++) {
+      T currVal = values[i];
+      int j = i - 1;
+      //move elements larger than currVal by adding 1 to index
+      while (j >= 0 && order.compare(values[j], currVal) > 0) {
+        values[j + 1] = values[j];
+        j = j - 1;
+      } // while
+      // put currVal in correct position
+      values[j + 1] = currVal;
+    } // for
   } // sort(T[])
 } // class InsertionSorter
